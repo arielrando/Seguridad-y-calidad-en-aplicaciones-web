@@ -8,5 +8,7 @@ public interface UsuarioService {
 	public Usuario login(Usuario usuario);
 	public List<Usuario> findAll();
 	public void save(Usuario usuario);
+	public List<Usuario> pendientes();
+	public void aceptar(Usuario usuario);
 
 }

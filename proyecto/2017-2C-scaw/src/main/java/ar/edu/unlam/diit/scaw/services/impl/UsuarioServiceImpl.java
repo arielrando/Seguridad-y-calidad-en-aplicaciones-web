@@ -36,4 +36,16 @@ public class UsuarioServiceImpl implements UsuarioService {
 		usuarioHsql.save(usuario);
 		
 	}
+	
+	@Override
+	public List<Usuario> pendientes() {
+		return usuarioHsql.pendientes();
+	}
+	
+	@Override
+	public void aceptar(Usuario usuario) {
+		usuarioHsql.aceptar(usuario);
+		
+	}
+	
 }

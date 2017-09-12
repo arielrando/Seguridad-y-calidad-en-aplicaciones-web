@@ -22,7 +22,8 @@ public class UsuarioBean implements Serializable {
 	private String nombre = null;
 	private Integer idEstadoUsuario = null;
 	private String descripcion = null;
-	
+	private Integer idRol = null;
+	private String rolDescripcion = null;
 	
 	UsuarioService service;
 	
@@ -31,7 +32,7 @@ public class UsuarioBean implements Serializable {
 		service = (UsuarioService) new UsuarioServiceImpl();
 	}
 	
-	public UsuarioBean(String eMail, String contraseña, Integer id, String apellido, String nombre, Integer idEstadoUsuario, String descripcion) {
+	public UsuarioBean(String eMail, String contraseña, Integer id, String apellido, String nombre, Integer idEstadoUsuario, String descripcion, Integer idRol, String rolDescripcion) {
 		super();
 		this.eMail = eMail;
 		this.contraseña = contraseña;
@@ -40,6 +41,10 @@ public class UsuarioBean implements Serializable {
 		this.nombre = nombre;
 		this.idEstadoUsuario = idEstadoUsuario;
 		this.descripcion = descripcion;
+		this.idEstadoUsuario = idEstadoUsuario;
+		this.descripcion = descripcion;
+		this.idRol = idRol;
+		this.rolDescripcion = rolDescripcion;
 	}
 	
 	public String save() {
@@ -51,6 +56,7 @@ public class UsuarioBean implements Serializable {
 		return "welcome";
 	}
 	
+	//Listado de todos los usuarios
 	public List<Usuario> getFindAll() {
 		List<Usuario> list = service.findAll();
 		return list;
@@ -62,32 +68,70 @@ public class UsuarioBean implements Serializable {
 		usuario.setEmail(this.eMail);
 		usuario.setContraseña(this.contraseña);	
 		usuario.setIdEstadoUsuario(this.idEstadoUsuario);
-		usuario.setDescripcion(this.descripcion);	
+		usuario.setDescripcion(this.descripcion);
+		usuario.setIdRol(this.idRol);
+		usuario.setRolDescripcion(this.rolDescripcion);	
 		
 		Usuario logueado = service.login(usuario);		
-		if(logueado!=null) 
+		if(logueado!=null && logueado.getIdEstadoUsuario().equals(2)) 
 		{
-			return "welcome";			
+			//admin
+			if(logueado.getIdRol().equals(1)) 
+			{
+				return "welcome";
+			}	
+			//docentes
+			else if(logueado.getIdRol().equals(2)) 
+			{
+				return "welcomeDocente";
+			}
+			//alumnos
+			else if(logueado.getIdRol().equals(3)) 
+			{
+				return "welcomeAlumno";
+			}
+			else
+			{
+				return "error";
+			}
 		}
 		else
 		{
-			return "index";
-		}		
-	}	
+			return "error";
+		}
+		
+	}
 
 	private Usuario buildUsuario() {
 		Usuario person = new Usuario();
 		
 		person.setEmail(this.eMail);
 		person.setContraseña(contraseña);
-		person.setId(id);
+		person.setId(this.id);
 		person.setApellido(this.apellido);
 		person.setNombre(this.nombre);
 		person.setIdEstadoUsuario(this.idEstadoUsuario);
 		person.setDescripcion(this.descripcion);
+		person.setIdRol(this.idRol);
 		
 		return person;
 	}
+	
+	//Listado de los usuarios pendientes de habilitacion
+	public List<Usuario> getPendientes() {
+		List<Usuario> list = service.pendientes();
+		return list;
+	}
+	
+	//Aceptar pendiente
+	public String aceptar() {
+			
+			Usuario person = buildUsuario();
+			
+			service.aceptar(person);
+			
+			return "welcome";
+		}
 
 	public String getEmail() {
 		return eMail;
@@ -151,6 +195,14 @@ public class UsuarioBean implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	
+	public Integer getIdRol() {
+		return idRol;
+	}
+
+	public void setIdRol(Integer idRol) {
+		this.idRol = idRol;
 	}
 
 	public static long getSerialversionuid() {

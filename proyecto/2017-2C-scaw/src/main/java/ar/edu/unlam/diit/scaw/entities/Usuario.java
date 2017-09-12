@@ -13,7 +13,9 @@ public class Usuario implements Serializable {
 	private String nombre;
 	private Integer idEstadoUsuario;
 	private String descripcion;
-
+	private Integer idUsuario;
+	private Integer idRol;
+	private String rolDescripcion;
 
 	public Usuario() {
 	}
@@ -72,6 +74,30 @@ public class Usuario implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	
+	public Integer getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(Integer idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+	
+	public Integer getIdRol() {
+		return idRol;
+	}
+
+	public void setIdRol(Integer idRol) {
+		this.idRol = idRol;
+	}
+	
+	public String getRolDescripcion() {
+		return rolDescripcion;
+	}
+
+	public void setRolDescripcion(String rolDescripcion) {
+		this.rolDescripcion = rolDescripcion;
 	}
 
 }

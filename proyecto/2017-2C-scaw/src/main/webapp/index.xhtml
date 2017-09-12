@@ -42,10 +42,14 @@
 							<div class="form-header"><h1>Iniciar Sesión</h1></div>
 							  <h:panelGrid>
 				
-								<h:inputText value="#{usuarioBean.email}" id="eMail" class="form-control input-lg" placeholder="E-mail"></h:inputText>
+								<h:inputText value="#{usuarioBean.email}" id="eMail" class="form-control input-lg" placeholder="E-mail" required="true">
+									<f:passThroughAttribute name="placeholder" value="E-mail"/>
+								</h:inputText>
 								<br />
 				
-								<h:inputSecret value="#{usuarioBean.contraseña}" id="contraseña" class="form-control input-lg" placeholder="Contraseña"></h:inputSecret>
+								<h:inputSecret value="#{usuarioBean.contraseña}" id="contraseña" class="form-control input-lg" placeholder="Contraseña" required="true">
+									<f:passThroughAttribute name="placeholder" value="Contraseña"/>
+								</h:inputSecret>
 								<br />
 								<br />
 				
@@ -61,29 +65,40 @@
 							<div class="form-header"><h1>Registración</h1></div>
 							  <h:panelGrid>
 								
-								<h:inputText value="#{usuarioBean.id}" id="id" class="form-control input-lg" requiredMessage="Nombre de Usuario"></h:inputText>
+								<h:inputText value="#{usuarioBean.id}" id="id" class="form-control input-lg" title="Nombre de Usuario" required="true">
+									<f:passThroughAttribute name="placeholder" value="Id"/>
+								</h:inputText>
 								<br />
 								
-								<h:inputText value="#{usuarioBean.nombre}" id="nombre" class="form-control input-lg" requiredMessage="Nombre de Usuario"></h:inputText>
+								<h:inputText value="#{usuarioBean.nombre}" id="nombre" class="form-control input-lg" data-placeholder="Nombre de Usuario" required="true">
+									<f:passThroughAttribute name="placeholder" value="Nombre"/>
+								</h:inputText>
 								<br />
 								
-								<h:inputText value="#{usuarioBean.apellido}" id="apellido" class="form-control input-lg" requiredMessage="Apellido"></h:inputText>
+								<h:inputText value="#{usuarioBean.apellido}" id="apellido" class="form-control input-lg" data-placeholder="Apellido" required="true">
+									<f:passThroughAttribute name="placeholder" value="Apellido"/>
+								</h:inputText>
 								<br />
 								
-								<h:inputText value="#{usuarioBean.email}" id="eMail" class="form-control input-lg" requiredMessage="E-mail"></h:inputText>
+								<h:inputText value="#{usuarioBean.email}" id="eMail" class="form-control input-lg" label="E-mail" required="true">
+									<f:passThroughAttribute name="placeholder" value="E-mail"/>
+								</h:inputText>
 								<br />
 								
-								<h:inputSecret value="#{usuarioBean.contraseña}" id="contraseña" class="form-control input-lg"></h:inputSecret>
+								<h:inputSecret value="#{usuarioBean.contraseña}" id="contraseña" class="form-control input-lg" required="true">
+									<f:passThroughAttribute name="placeholder" value="Contraseña"/>
+								</h:inputSecret>
 								<br />
 								
-								<select id="tipo" class="form-control input-lg" value="Tipo de Usuario">
-									<option>Alumno</option>
-    								<option>Docente</option>
-								</select>
+								<h:selectOneMenu value = "#{usuarioBean.idRol}" class="form-control input-lg"> 
+								   <f:selectItem itemValue = "3" itemLabel = "Alumno" /> 
+								   <f:selectItem itemValue = "2" itemLabel = "Docente" /> 
+								</h:selectOneMenu> 
 								<br />
 								
 				
 								<h:commandButton action="#{usuarioBean.save}" value="Ingresar" class="btn btn-primary btn-md"><i class="fa fa-sign-in"></i>
+									
 								</h:commandButton>
 							   </h:panelGrid>
 					    </h:form>

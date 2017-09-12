@@ -23,7 +23,10 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			conn = (dataSource.dataSource()).getConnection();
 			Statement query = conn.createStatement();
 			
-			String sql = "SELECT * FROM Usuarios WHERE eMail = '"+ usuario.getEmail() + "' AND contraseña = '"+ usuario.getContraseña() +"' AND idEstadoUsuario IN (1,2,3)";
+			String sql = 
+					"SELECT * FROM Usuarios "
+					+ "INNER JOIN RolesUsuarios ON Usuarios.id= RolesUsuarios.idUsuario "
+					+ "WHERE eMail = '"+ usuario.getEmail() + "' AND contraseña = '"+ usuario.getContraseña() +"' AND idEstadoUsuario IN (1,2)";
 			ResultSet rs = query.executeQuery(sql);
 			while(rs.next()){
 				String eMail = rs.getString("eMail");
@@ -32,6 +35,8 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				String apellido = rs.getString("apellido");
 				String nombre = rs.getString("nombre");
 				Integer idEstadoUsuario = rs.getInt("idEstadoUsuario");
+				Integer idUsuario = rs.getInt("idUsuario");
+				Integer idRol = rs.getInt("idRol");
 				
 				logueado = new Usuario();
 				logueado.setEmail(eMail);
@@ -39,7 +44,9 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				logueado.setId(id);
 				logueado.setApellido(apellido);
 				logueado.setNombre(nombre);
-				logueado.setId(idEstadoUsuario);
+				logueado.setIdEstadoUsuario(idEstadoUsuario);
+				logueado.setIdUsuario(idUsuario);
+				logueado.setIdRol(idRol);
 			}
 			conn.close();
 		} catch (Exception e) {
@@ -59,7 +66,11 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			
 			query = conn.createStatement();
 			
-			ResultSet rs = query.executeQuery("SELECT * FROM Usuarios INNER JOIN EstadosUsuarios ON Usuarios.idEstadoUsuario = EstadosUsuarios.id");
+			ResultSet rs = query.executeQuery(
+					"SELECT * FROM Usuarios "
+					+ "INNER JOIN EstadosUsuarios ON Usuarios.idEstadoUsuario = EstadosUsuarios.id "
+					+ "LEFT JOIN RolesUsuarios ON Usuarios.id = RolesUsuarios.idUsuario "
+					+ "LEFT JOIN Roles ON Usuarios.id = Roles.id");
 	
 			while (rs.next()) {
 			  
@@ -70,6 +81,9 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				String nombre = rs.getString("nombre");
 				Integer idEstadoUsuario = rs.getInt("idEstadoUsuario");
 				String descripcion = rs.getString("descripcion");
+				Integer idUsuario = rs.getInt("idUsuario");
+				Integer idRol = rs.getInt("idRol");
+				String rolDescripcion = rs.getString("rolDescripcion");
 			  
 				Usuario usuario = new Usuario();
 				usuario.setEmail(eMail);
@@ -78,7 +92,10 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				usuario.setApellido(apellido);
 				usuario.setNombre(nombre);
 				usuario.setIdEstadoUsuario(idEstadoUsuario);
-				usuario.setDescripcion(descripcion);;
+				usuario.setDescripcion(descripcion);
+				usuario.setIdUsuario(idUsuario);
+				usuario.setIdRol(idRol);
+				usuario.setRolDescripcion(rolDescripcion);
 	
 				ll.add(usuario);
 			}
@@ -98,9 +115,90 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		
 			Statement query;
 			
+			
 			query = conn.createStatement();		
-			query.executeUpdate("INSERT INTO Usuarios VALUES(" + usuario.getId() + ", '" + usuario.getEmail() + "', '" + usuario.getContraseña() + "', '" + usuario.getApellido()+ "', '" + usuario.getNombre() + "', 1);");
-						
+			query.executeUpdate(
+					"INSERT INTO Usuarios "
+					+ "VALUES(" + usuario.getId() + ", '" + usuario.getEmail() + "', '" + usuario.getContraseña() + "', '" + usuario.getApellido()+ "', '" + usuario.getNombre() + "', 1);"
+							
+			);
+			
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+	}
+	
+	//Listado de usuarios pendientes de habilitacion
+	@Override
+	public List<Usuario> pendientes() {
+		List<Usuario> ll = new LinkedList<Usuario>();
+		
+		try {
+			conn = (dataSource.dataSource()).getConnection();
+		
+			Statement query;
+			
+			query = conn.createStatement();
+			
+			ResultSet rs = query.executeQuery(
+					"SELECT * FROM Usuarios "
+					+ "INNER JOIN EstadosUsuarios ON Usuarios.idEstadoUsuario = EstadosUsuarios.id "
+					+ "LEFT JOIN RolesUsuarios ON Usuarios.id = RolesUsuarios.idUsuario "
+					+ "LEFT JOIN Roles ON Usuarios.id = Roles.id "
+					+ "WHERE Usuarios.idEstadoUsuario = 1");
+	
+			while (rs.next()) {
+			  
+				String eMail = rs.getString("eMail");
+				String contraseña = rs.getString("contraseña");
+				Integer id = rs.getInt("id");
+				String apellido = rs.getString("apellido");
+				String nombre = rs.getString("nombre");
+				Integer idEstadoUsuario = rs.getInt("idEstadoUsuario");
+				String descripcion = rs.getString("descripcion");
+				Integer idUsuario = rs.getInt("idUsuario");
+				Integer idRol = rs.getInt("idRol");
+				String rolDescripcion = rs.getString("rolDescripcion");
+			  
+				Usuario usuario = new Usuario();
+				usuario.setEmail(eMail);
+				usuario.setContraseña(contraseña);
+				usuario.setId(id);
+				usuario.setApellido(apellido);
+				usuario.setNombre(nombre);
+				usuario.setIdEstadoUsuario(idEstadoUsuario);
+				usuario.setDescripcion(descripcion);
+				usuario.setIdUsuario(idUsuario);
+				usuario.setIdRol(idRol);
+				usuario.setRolDescripcion(rolDescripcion);
+	
+				ll.add(usuario);
+			}
+			
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ll;
+	}
+	
+	//Aceptar pendientes
+	@Override
+	public void aceptar(Usuario usuario) {
+
+		try {
+			conn = (dataSource.dataSource()).getConnection();
+		
+			Statement query;
+			
+			
+			query = conn.createStatement();		
+			query.executeUpdate(
+					"UPDATE Usuarios SET idEstadoUsuario = 2 "
+					+ "WHERE id ="+ usuario.getId() + ";"	
+			);
+			
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -9,5 +9,7 @@ public interface UsuarioDao {
 	public List<Usuario> findAll();
 	public Usuario login(Usuario usuario);
 	public void save(Usuario usuario);
+	public List<Usuario> pendientes();
+	public void aceptar(Usuario usuario);
 
 }
