@@ -22,9 +22,6 @@
 		    </div>
 		    <ul class="nav navbar-nav">
 		      <li class="active"><a href="#">Home</a></li>
-		      <li><a href="#">Page 1</a></li>
-		      <li><a href="#">Page 2</a></li>
-		      <li><a href="#">Page 3</a></li>
 		    </ul>
 		  </div>
 		</nav>
@@ -42,12 +39,12 @@
 							<div class="form-header"><h1>Iniciar Sesión</h1></div>
 							  <h:panelGrid>
 				
-								<h:inputText value="#{usuarioBean.email}" id="eMail" class="form-control input-lg" placeholder="E-mail" required="true">
+								<h:inputText value="#{usuarioBean.email}" id="eMail" class="form-control input-lg" required="true">
 									<f:passThroughAttribute name="placeholder" value="E-mail"/>
 								</h:inputText>
 								<br />
 				
-								<h:inputSecret value="#{usuarioBean.contraseña}" id="contraseña" class="form-control input-lg" placeholder="Contraseña" required="true">
+								<h:inputSecret value="#{usuarioBean.contraseña}" id="contraseña" class="form-control input-lg" required="true">
 									<f:passThroughAttribute name="placeholder" value="Contraseña"/>
 								</h:inputSecret>
 								<br />
@@ -64,11 +61,6 @@
 						<h:form class="form-login">
 							<div class="form-header"><h1>Registración</h1></div>
 							  <h:panelGrid>
-								
-								<h:inputText value="#{usuarioBean.id}" id="id" class="form-control input-lg" title="Nombre de Usuario" required="true">
-									<f:passThroughAttribute name="placeholder" value="Id"/>
-								</h:inputText>
-								<br />
 								
 								<h:inputText value="#{usuarioBean.nombre}" id="nombre" class="form-control input-lg" data-placeholder="Nombre de Usuario" required="true">
 									<f:passThroughAttribute name="placeholder" value="Nombre"/>

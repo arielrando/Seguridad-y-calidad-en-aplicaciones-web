@@ -2,10 +2,18 @@ package ar.edu.unlam.diit.scaw.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private Integer id;
 	private String email;
 	private String contraseña;
@@ -13,7 +21,6 @@ public class Usuario implements Serializable {
 	private String nombre;
 	private Integer idEstadoUsuario;
 	private String descripcion;
-	private Integer idUsuario;
 	private Integer idRol;
 	private String rolDescripcion;
 
@@ -76,13 +83,6 @@ public class Usuario implements Serializable {
 		this.descripcion = descripcion;
 	}
 	
-	public Integer getIdUsuario() {
-		return idUsuario;
-	}
-
-	public void setIdUsuario(Integer idUsuario) {
-		this.idUsuario = idUsuario;
-	}
 	
 	public Integer getIdRol() {
 		return idRol;

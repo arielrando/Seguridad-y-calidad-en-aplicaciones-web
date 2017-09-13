@@ -2,9 +2,12 @@ package ar.edu.unlam.diit.scaw.beans;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+
 import ar.edu.unlam.diit.scaw.entities.Usuario;
 import ar.edu.unlam.diit.scaw.services.UsuarioService;
 import ar.edu.unlam.diit.scaw.services.impl.UsuarioServiceImpl;
@@ -126,13 +129,31 @@ public class UsuarioBean implements Serializable {
 	//Aceptar pendiente
 	public String aceptar() {
 			
-			Usuario person = buildUsuario();
-			
-			service.aceptar(person);
-			
-			return "welcome";
+			Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+			String id2 = params.get("idParamAceptar");
+			int id = Integer.parseInt(id2);
+	
+			service.aceptar(id);
+			return "pendientes";
 		}
-
+	
+	//Rechazar pendiente
+	public String rechazar() {
+			
+			Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+			String id2 = params.get("idParamRechazar");
+			int id = Integer.parseInt(id2);
+	
+			service.rechazar(id);
+			return "pendientes";
+		}
+	
+	//Listado de docentes
+		public List<Usuario> getDocentes() {
+			List<Usuario> list = service.docentes();
+			return list;
+		}
+	
 	public String getEmail() {
 		return eMail;
 	}
@@ -208,6 +229,5 @@ public class UsuarioBean implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
 
 }

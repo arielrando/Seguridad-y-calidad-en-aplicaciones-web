@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+
+	<h:head>
+	
+		<!-- Bootstrap core CSS -->
+	   <link href="css/bootstrap.min.css" rel="stylesheet" />
+	   <!--  CSS -->
+	   <link href="css/style.css" rel="stylesheet" type="text/css"/>
+		
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="#">UNLAM - Sistema de Evaluación</a>
+		    </div>
+		    <ul class="nav navbar-nav">
+		      <li><a href="welcome.xhtml">Inicio</a></li>
+		      <li><a href="pendientes.xhtml">Usuarios Pendientes</a></li>
+		      <li><a href="materias.xhtml">Materias</a></li>
+		      <li><a href="#">Page 3</a></li>
+		    </ul>
+		  </div>
+		</nav>
+		<title>UNLAM - Sistema de evaluación</title>
+		
+		
+	</h:head>
+
+	<h:body>
+	
+			<h:form class="form-login">
+				
+					<div class="form-header"><h1>Agregar Materia</h1></div>
+					  <h:panelGrid>
+						<h:inputText value="#{materiaBean.nombre}" id="nombre" class="form-control input-lg" required="true">
+							<f:passThroughAttribute name="placeholder" value="Nombre de la Materia"/>
+						</h:inputText>
+						<br />
+						
+						<h:inputText value="#{materiaBean.idDocenteTitular}" id="idDocenteTitular" class="form-control input-lg" required="true">
+							<f:passThroughAttribute name="placeholder" value="Docente de la Materia"/>
+						</h:inputText>
+						<br />
+						
+						<h:selectOneMenu class="form-control input-lg">
+							<f:selectItem value="#{null}" itemLabel="- Elegir Docente Titular -" />
+				            <f:selectItems value="#{usuarioBean.docentes}" var="docentes" itemLabel="#{docentes.id} - #{docentes.nombre}" itemValue="#{docentes.id}" />
+				        </h:selectOneMenu>
+				        
+						<h:commandButton action="#{materiaBean.save}" value="Ingresar" class="btn btn-primary btn-md">
+							<i class="fa fa-sign-in"></i>
+						</h:commandButton>
+					
+						<h:button value="Volver" outcome="materias" class="btn btn-danger btn-md"/>
+					</h:panelGrid>
+	      	</h:form>
+		
+	</h:body>
+</html>

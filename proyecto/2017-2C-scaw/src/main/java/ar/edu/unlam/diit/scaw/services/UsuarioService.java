@@ -9,6 +9,8 @@ public interface UsuarioService {
 	public List<Usuario> findAll();
 	public void save(Usuario usuario);
 	public List<Usuario> pendientes();
-	public void aceptar(Usuario usuario);
+	public void aceptar(Integer id);
+	public void rechazar(Integer id);
+	public List<Usuario> docentes();
 
 }

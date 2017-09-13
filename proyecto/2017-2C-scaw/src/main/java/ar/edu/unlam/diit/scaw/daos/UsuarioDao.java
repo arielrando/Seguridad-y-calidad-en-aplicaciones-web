@@ -10,6 +10,8 @@ public interface UsuarioDao {
 	public Usuario login(Usuario usuario);
 	public void save(Usuario usuario);
 	public List<Usuario> pendientes();
-	public void aceptar(Usuario usuario);
-
+	public void aceptar(Integer id);
+	public void rechazar(Integer id);
+	public List<Usuario> docentes();
+	
 }

@@ -37,15 +37,30 @@ public class UsuarioServiceImpl implements UsuarioService {
 		
 	}
 	
+	//Lista de usuarios pendientes de habilitacion
 	@Override
 	public List<Usuario> pendientes() {
 		return usuarioHsql.pendientes();
 	}
 	
+	//aceptar un usuario
 	@Override
-	public void aceptar(Usuario usuario) {
-		usuarioHsql.aceptar(usuario);
+	public void aceptar(Integer id) {
+		usuarioHsql.aceptar(id);
 		
 	}
+	
+	//rechazar un usuario
+	@Override
+	public void rechazar(Integer id) {
+		usuarioHsql.rechazar(id);
+		
+	}
+	
+	//Lista de docentes
+		@Override
+		public List<Usuario> docentes() {
+			return usuarioHsql.docentes();
+		}
 	
 }
