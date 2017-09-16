@@ -24,7 +24,10 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			Statement query = conn.createStatement();
 			
 			String sql = 
-					"SELECT * FROM Usuarios "
+					"SELECT U.email, U.contraseña, U.id, U.apellido, U.nombre, U.idEstadoUsuario, EU.descripcion, R.id, R.descripcion FROM Usuarios AS U "
+					+ "INNER JOIN RolesUsuarios AS RU ON U.id=RU.idUsuario "
+					+ "INNER JOIN ROLES AS R ON RU.idRol=R.id "
+					+ "INNER JOIN EstadosUsuarios AS EU ON U.idEstadoUsuario=EU.id "
 					+ "WHERE eMail = '"+ usuario.getEmail() + "' AND contraseña = '"+ usuario.getContraseña() +"' AND idEstadoUsuario IN (1,2)";
 			ResultSet rs = query.executeQuery(sql);
 			while(rs.next()){
