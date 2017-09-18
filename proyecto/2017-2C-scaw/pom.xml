@@ -72,6 +72,8 @@
 			<artifactId>jsp-api</artifactId>
 			<version>2.1</version>
 		</dependency>
+		<!-- <dependency> <groupId>commons-digester</groupId> <artifactId>commons-digester</artifactId> 
+			<version>2.1</version> </dependency> -->
 	</dependencies>
 
 	<build>
@@ -88,6 +90,11 @@
 						<endorseddirs>${endorsed.dir}</endorseddirs>
 					</compilerArgs>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
 			</plugin>
 		</plugins>
 	</build>
