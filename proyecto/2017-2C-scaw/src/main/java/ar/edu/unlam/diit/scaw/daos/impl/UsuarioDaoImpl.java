@@ -24,7 +24,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			Statement query = conn.createStatement();
 			
 			String sql = 
-					"SELECT U.email, U.contraseña, U.id, U.apellido, U.nombre, U.idEstadoUsuario, EU.descripcion, R.id, R.descripcion FROM Usuarios AS U "
+					"SELECT U.email, U.contraseña, U.id, U.apellido, U.nombre, U.idEstadoUsuario, EU.descripcion, R.id AS idRol, R.rolDescripcion FROM Usuarios AS U "
 					+ "INNER JOIN RolesUsuarios AS RU ON U.id=RU.idUsuario "
 					+ "INNER JOIN ROLES AS R ON RU.idRol=R.id "
 					+ "INNER JOIN EstadosUsuarios AS EU ON U.idEstadoUsuario=EU.id "
