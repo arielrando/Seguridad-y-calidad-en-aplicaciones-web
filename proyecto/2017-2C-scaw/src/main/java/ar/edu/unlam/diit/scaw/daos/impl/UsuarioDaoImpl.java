@@ -116,8 +116,13 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			
 			query = conn.createStatement();		
 			query.executeUpdate(
-					"INSERT INTO Usuarios (eMail, contraseña, apellido, nombre, idestadousuario, idrol) "
-					+ "VALUES('" + usuario.getEmail() + "', '" + usuario.getContraseña() + "', '" + usuario.getApellido()+ "', '" + usuario.getNombre() + "', 1," + usuario.getIdRol() + ")"
+					"INSERT INTO Usuarios (eMail, contraseña, apellido, nombre, idestadousuario) "
+					+ "VALUES('" + usuario.getEmail() + "', '" + usuario.getContraseña() + "', '" + usuario.getApellido()+ "', '" + usuario.getNombre() + ")"
+							
+			);
+			query.executeUpdate(
+					"INSERT INTO RolesUsuarios (idUsuario, idRol) "
+					+ "VALUES('" + usuario.getId() + "', '" + usuario.getIdRol() + ")"
 							
 			);
 			

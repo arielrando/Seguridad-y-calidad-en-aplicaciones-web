@@ -3,8 +3,8 @@ package ar.edu.unlam.diit.scaw.beans;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 import ar.edu.unlam.diit.scaw.entities.Materia;
 import ar.edu.unlam.diit.scaw.services.MateriaService;
@@ -40,32 +40,7 @@ public class MateriaBean implements Serializable {
 		this.idEstadoMateria = idEstadoMateria;
 	}
 	
-	public String save() {
-		
-		Materia materia = buildMateria();
-		
-		service.save(materia);
-		
-		return "materias";
-	}
-	
-	//Listado de todas los materias
-	public List<Materia> getMaterias() {
-		List<Materia> list = service.materias();
-		return list;
-	}
-	
-	
-	private Materia buildMateria() {
-		Materia materia = new Materia();
-		
-		materia.setId(this.id);
-		materia.setNombre(this.nombre);
-		materia.setIdDocenteTitular(this.idDocenteTitular);
-		materia.setIdEstadoMateria(this.idEstadoMateria);
-		
-		return materia;
-	}
+
 	
 	public Integer getId() {
 		return id;
@@ -123,9 +98,31 @@ public class MateriaBean implements Serializable {
 		this.idEstadoMateria = idEstadoMateria;
 	}
 	
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String save() {
+		
+		Materia materia = buildMateria();
+		
+		service.save(materia);
+		
+		return "materias";
+	}
+	
+	//Listado de todas los materias
+	public List<Materia> getMaterias() {
+		List<Materia> list = service.materias();
+		return list;
+	}
+	
+	
+	private Materia buildMateria() {
+		Materia materia = new Materia();
+		
+		materia.setId(this.id);
+		materia.setNombre(this.nombre);
+		materia.setIdDocenteTitular(this.idDocenteTitular);
+		materia.setIdEstadoMateria(this.idEstadoMateria);
+		
+		return materia;
 	}
 
 }

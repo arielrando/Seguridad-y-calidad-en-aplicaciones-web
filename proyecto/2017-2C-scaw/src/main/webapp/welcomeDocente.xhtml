@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -35,6 +34,29 @@
 
 	<h:body>
 		<span>Docentes</span>
+		
+		<h:form class="form-login">
+			<h:button value="Nuevo examen" outcome="examenRegistro" class="btn btn-primary btn-md"/>
+			<h1>Lista de Examenes</h1>
+			<h:dataTable value="#{examenBean.examenes}" var="examen"
+				class= "table table-success">
+		
+				<h:column>
+					<f:facet name="header">Nombre Examen</f:facet>    				
+		      		#{examen.id} - #{examen.nombre}
+		  		 </h:column>
+		
+				<h:column>
+					<f:facet name="header">Materia</f:facet>
+		      		#{examen.idMateria} - #{examen.nombreMateria}
+		   		</h:column>
+		
+				<h:column>
+					<f:facet name="header">Estado del examen</f:facet>
+		    	  	#{examen.idEstadoExamen} - #{examen.estadoExamen}
+			   	</h:column>
+			  </h:dataTable>
+		</h:form>
 		
 	</h:body>
 </html>

@@ -36,28 +36,27 @@
 	
 			<h:form class="form-login">
 				
-					<div class="form-header"><h1>Agregar Materia</h1></div>
+					<div class="form-header"><h1>Agregar Examen</h1></div>
 					  <h:panelGrid>
-						<h:inputText value="#{materiaBean.nombre}" id="nombre" class="form-control input-lg" required="true">
-							<f:passThroughAttribute name="placeholder" value="Nombre de la Materia"/>
+						<h:inputText value="#{examenBean.nombre}" id="nombre" class="form-control input-lg" required="true">
+							<f:passThroughAttribute name="placeholder" value="Nombre del examen"/>
 						</h:inputText>
 						<br />
 						
-						<h:inputText value="#{materiaBean.idDocenteTitular}" id="idDocenteTitular" class="form-control input-lg" required="true">
-							<f:passThroughAttribute name="placeholder" value="Docente de la Materia"/>
+						<h:inputText value="#{examenBean.idMateria}" id="idMateria" class="form-control input-lg" required="true">
+							<f:passThroughAttribute name="placeholder" value="Materia"/>
 						</h:inputText>
 						<br />
 						
-						<h:selectOneMenu class="form-control input-lg">
-							<f:selectItem value="#{null}" itemLabel="- Elegir Docente Titular -" />
-				            <f:selectItems value="#{usuarioBean.docentes}" var="docentes" itemLabel="#{docentes.id} - #{docentes.nombre}" itemValue="#{docentes.id}" />
-				        </h:selectOneMenu>
+						<h:inputText value="#{examenBean.idEstadoExamen}" id="idEstadoExamen" class="form-control input-lg" required="true">
+							<f:passThroughAttribute name="placeholder" value="Estado del examen"/>
+						</h:inputText>
 				        
-						<h:commandButton action="#{materiaBean.save}" value="Ingresar" class="btn btn-primary btn-md">
+						<h:commandButton action="#{examenBean.save}" value="Ingresar" class="btn btn-primary btn-md">
 							<i class="fa fa-sign-in"></i>
 						</h:commandButton>
 					
-						<h:button value="Volver" outcome="materias" class="btn btn-danger btn-md"/>
+						<h:button value="Volver" outcome="examenes" class="btn btn-danger btn-md"/>
 					</h:panelGrid>
 	      	</h:form>
 		

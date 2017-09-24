@@ -17,18 +17,22 @@ public class Examen implements Serializable {
 	private int id;
 	private String nombre;
 	private int idMateria;
+	private String nombreMateria;
 	private int idEstadoExamen;
+	private String estadoExamen;
 	
 	public Examen(){
 		
 	}
 	
-	public Examen(int id, String nombre, int idMateria, int idEstadoExamen) {
+	public Examen(int id, String nombre, int idMateria, String nombreMateria, int idEstadoExamen, String estadoExamen) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.idMateria = idMateria;
+		this.nombreMateria = nombreMateria;
 		this.idEstadoExamen = idEstadoExamen;
+		this.estadoExamen = estadoExamen;
 	}
 
 	public int getId() {
@@ -61,5 +65,21 @@ public class Examen implements Serializable {
 
 	public void setIdEstadoExamen(int idEstadoExamen) {
 		this.idEstadoExamen = idEstadoExamen;
+	}
+
+	public String getNombreMateria() {
+		return nombreMateria;
+	}
+
+	public void setNombreMateria(String nombreMateria) {
+		this.nombreMateria = nombreMateria;
+	}
+
+	public String getEstadoExamen() {
+		return estadoExamen;
+	}
+
+	public void setEstadoExamen(String estadoExamen) {
+		this.estadoExamen = estadoExamen;
 	}
 }
