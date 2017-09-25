@@ -20,7 +20,7 @@ public class UsuarioBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String eMail = null;
-	private String contraseña = null;
+	private String contrasena = null;
 	private Integer id = null;
 	private String apellido = null;
 	private String nombre = null;
@@ -36,10 +36,10 @@ public class UsuarioBean implements Serializable {
 		service = (UsuarioService) new UsuarioServiceImpl();
 	}
 
-	public UsuarioBean(String eMail, String contraseña, Integer id, String apellido, String nombre, Integer idEstadoUsuario, String descripcion, Integer idRol, String rolDescripcion) {
+	public UsuarioBean(String eMail, String contrasena, Integer id, String apellido, String nombre, Integer idEstadoUsuario, String descripcion, Integer idRol, String rolDescripcion) {
 		super();
 		this.eMail = eMail;
-		this.contraseña = contraseña;
+		this.contrasena = contrasena;
 		this.id = id;
 		this.apellido = apellido;
 		this.nombre = nombre;
@@ -61,12 +61,12 @@ public class UsuarioBean implements Serializable {
 		this.eMail = email;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasena() {
+		return contrasena;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	public Integer getId() {
@@ -144,7 +144,7 @@ public class UsuarioBean implements Serializable {
 
 		Usuario usuario = new Usuario();
 		usuario.setEmail(this.eMail);
-		usuario.setContraseña(this.contraseña);	
+		usuario.setContrasena(this.contrasena);	
 		usuario.setIdEstadoUsuario(this.idEstadoUsuario);
 		usuario.setDescripcion(this.descripcion);
 		usuario.setIdRol(this.idRol);
@@ -184,7 +184,7 @@ public class UsuarioBean implements Serializable {
 		Usuario person = new Usuario();
 
 		person.setEmail(this.eMail);
-		person.setContraseña(contraseña);
+		person.setContrasena(contrasena);
 		person.setId(this.id);
 		person.setApellido(this.apellido);
 		person.setNombre(this.nombre);
