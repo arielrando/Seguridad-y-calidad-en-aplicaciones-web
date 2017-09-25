@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -17,13 +18,12 @@
 		<nav class="navbar navbar-inverse">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
-		      <a class="navbar-brand" href="#">UNLAM - Sistema de Evaluación</a>
+		      <a class="navbar-brand" href="index.xhtlm">UNLAM - Sistema de Evaluación</a>
 		    </div>
 		    <ul class="nav navbar-nav">
 		      <li><a href="welcome.xhtml">Inicio</a></li>
 		      <li><a href="pendientes.xhtml">Usuarios Pendientes</a></li>
 		      <li><a href="materias.xhtml">Materias</a></li>
-		      <li><a href="#">Page 3</a></li>
 		    </ul>
 		  </div>
 		</nav>
@@ -38,17 +38,12 @@
 				
 					<div class="form-header"><h1>Agregar Materia</h1></div>
 					  <h:panelGrid>
-						<h:inputText value="#{materiaBean.nombre}" id="nombre" class="form-control input-lg" required="true">
+						<h:inputText value="#{materiaBean.nombreMateria}" id="nombreMateria" class="form-control input-lg" required="true">
 							<f:passThroughAttribute name="placeholder" value="Nombre de la Materia"/>
 						</h:inputText>
 						<br />
 						
-						<h:inputText value="#{materiaBean.idDocenteTitular}" id="idDocenteTitular" class="form-control input-lg" required="true">
-							<f:passThroughAttribute name="placeholder" value="Docente de la Materia"/>
-						</h:inputText>
-						<br />
-						
-						<h:selectOneMenu class="form-control input-lg">
+				        <h:selectOneMenu value="#{materiaBean.idDocenteTitular}" class="form-control input-lg" >
 							<f:selectItem value="#{null}" itemLabel="- Elegir Docente Titular -" />
 				            <f:selectItems value="#{usuarioBean.docentes}" var="docentes" itemLabel="#{docentes.id} - #{docentes.nombre}" itemValue="#{docentes.id}" />
 				        </h:selectOneMenu>

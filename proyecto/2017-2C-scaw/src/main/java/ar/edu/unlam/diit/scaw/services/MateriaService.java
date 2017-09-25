@@ -7,5 +7,5 @@ public interface MateriaService {
 
 	public List<Materia> materias();
 	public void save(Materia materia);
-
+	public List<Materia> docentes();
 }

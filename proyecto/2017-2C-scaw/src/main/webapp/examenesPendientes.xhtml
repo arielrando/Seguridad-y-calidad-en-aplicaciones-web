@@ -18,9 +18,8 @@
 		      <a class="navbar-brand" href="index.xhtlm">UNLAM - Sistema de Evaluación</a>
 		    </div>
 		    <ul class="nav navbar-nav">
-		      <li><a href="welcome.xhtml">Inicio</a></li>
-		      <li><a href="pendientes.xhtml">Usuarios Pendientes</a></li>
-		      <li><a href="materias.xhtml">Materias</a></li>
+		      <li><a href="examenes.xhtml">Lista de Exámenes</a></li>
+		      <li><a href="examenesPendientes.xhtml">Exámenes Pendientes de Aprobación</a></li>
 		    </ul>
 		  </div>
 		</nav>
@@ -34,43 +33,38 @@
 	<br />
 	<br />
 	<h:form class="form-login">
-		<h1>Usuarios Pendientes de Habilitación</h1>
-		<h:dataTable value="#{usuarioBean.pendientes}" var="person"
+		<h1>Exámenes Pendientes de Habilitación</h1>
+		<h:dataTable value="#{examenBean.pendientes}" var="examen"
 			class= "table table-success">
 	
 			<h:column>
 				<f:facet name="header">Nombre</f:facet>    				
-	      		#{person.nombre}
+	      		#{examen.id} - #{examen.nombre}
 	  		 </h:column>
 	
 			<h:column>
-				<f:facet name="header">Apellido</f:facet>
-	      		#{person.apellido}
-	   		</h:column>
-	
-			<h:column>
-				<f:facet name="header">Email</f:facet>
-	    	  	#{person.email}
+				<f:facet name="header">Materia</f:facet>
+	    	  	#{examen.idMateria} - #{examen.nombreMateria}
 		   	</h:column>
 		   	<h:column>
-				<f:facet name="header">Estado del Usuario</f:facet>
-	    	  	#{person.idEstadoUsuario} - #{person.descripcion}
+				<f:facet name="header">Estado del Examen</f:facet>
+	    	  	#{examen.idEstadoExamen} - #{examen.descripcion}
 	    	  	
 		    </h:column>
 		    
 		   <h:column>
-				<f:facet name="header">Aceptar</f:facet>
-				<h:commandButton action="#{usuarioBean.aceptar}" value="Aceptar" class="btn btn-primary btn-md">
+				<f:facet name="header">Materia En Curso</f:facet>
+				<h:commandButton action="#{examenBean.aceptarExamen}" value="Aceptar" class="btn btn-primary btn-md">
 					<i class="fa fa-sign-in"></i>
-					<f:param name="idParamAceptar" value="#{person.id}" />
+					<f:param name="idParamAceptarExamen" value="#{examen.id}" />
 				</h:commandButton>
 		   </h:column>
 		   
 		   <h:column>
-				<f:facet name="header">Rechazar</f:facet>
-				<h:commandButton action="#{usuarioBean.rechazar}" value="Rechazar" class="btn btn-danger btn-md">
+				<f:facet name="header">Materia Finalizada</f:facet>
+				<h:commandButton action="#{examenBean.rechazarExamen}" value="Finalizar" class="btn btn-danger btn-md">
 					<i class="fa fa-sign-in"></i>
-					<f:param name="idParamRechazar" value="#{person.id}" />
+					<f:param name="idParamRechazarExamen" value="#{examen.id}" />
 				</h:commandButton>
 		   </h:column>
 		   

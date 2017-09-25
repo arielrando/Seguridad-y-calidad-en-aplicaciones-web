@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:head>
+	
+		<!-- Bootstrap core CSS -->
+	   <link href="css/bootstrap.min.css" rel="stylesheet" />
+	   <!--  CSS -->
+	   <link href="css/style.css" rel="stylesheet" type="text/css"/>
+		
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="index.xhtlm">UNLAM - Sistema de Evaluación</a>
+		    </div>
+		    <ul class="nav navbar-nav">
+		      <li><a href="examenesAlumno.xhtml">Lista de Exámenes</a></li>
+		    </ul>
+		  </div>
+		</nav>
+		<title>UNLAM - Sistema de evaluación</title>
+		
+		
+	</h:head>
+
+<h:body>
+
+	<br />
+	<br />
+	<h:form class="form-login">
+		<h1>Exámenes</h1>
+		<h:dataTable value="#{examenBean.habilitados}" var="habilitados"
+			class= "table table-success">
+			
+			<h:column>
+				<f:facet name="header">Nombre del Examen</f:facet>    				
+	      		#{habilitados.id} - #{habilitados.nombre}
+	  		 </h:column>
+	  		 
+	  		 <h:column>
+				<f:facet name="header">Nombre de la Materia</f:facet>    				
+	      		#{habilitados.idMateria} - #{habilitados.nombreMateria}
+	  		 </h:column>
+	  		
+	  		<!--h:column>
+				<f:facet name="header">Realizar Preguntas</f:facet>    	
+				<h:commandButton id="submit" class="btn btn-primary btn-md" value="Aceptar" action="#{examenBean.realizarExamenAlumnos}">	   
+				   	<f:param name="id" value="#{habilitados.id}" />
+				   	<f:param name="pregunta" value="#{habilitados.pregunta}" />
+				</h:commandButton>
+			</h:column-->
+			
+		</h:dataTable>	
+		
+		
+	</h:form>
+</h:body>
+</html>

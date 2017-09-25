@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:head>
+	
+		<!-- Bootstrap core CSS -->
+	   <link href="css/bootstrap.min.css" rel="stylesheet" />
+	   <!--  CSS -->
+	   <link href="css/style.css" rel="stylesheet" type="text/css"/>
+		
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="index.xhtlm">UNLAM - Sistema de Evaluación</a>
+		    </div>
+		  </div>
+		</nav>
+		<title>UNLAM - Sistema de evaluación</title>
+		
+		
+	</h:head>
+
+<h:body>
+		<h:form class="form-login">
+			
+			
+			<div class="form-header"><h1>Preguntas</h1></div>
+			  <h:panelGrid>
+				
+				<h:inputHidden value="#{examenBean.data_examen}" class="form-control input-lg" data-placeholder="Pregunta" required="true">
+					<f:passThroughAttribute name="placeholder" value="Pregunta"/>
+				</h:inputHidden>
+				<br />
+				
+				<h:inputText value="#{examenBean.pregunta}" id="pregunta" class="form-control input-lg" data-placeholder="Pregunta" required="true">
+					<f:passThroughAttribute name="placeholder" value="Pregunta"/>
+				</h:inputText>
+				<br />
+				<h:column>
+					<h:button value="Volver" outcome="examenes" class="btn btn-danger btn-md"/>
+				</h:column>
+				
+				<h:commandButton action="#{examenBean.savePreguntas}" value="Ingresar" class="btn btn-primary btn-md"><i class="fa fa-sign-in"></i>
+					
+				</h:commandButton>
+			   </h:panelGrid>
+			   
+			   <h:dataTable value="#{examenBean.preguntasPorId}" var="pregunta" class= "table table-success">
+			<h:column>
+				<f:facet name="header">Preguntas</f:facet>    				
+	      		#{pregunta.id_pregunta} - #{pregunta.pregunta}
+	  		 </h:column>
+	  		 
+	  		 <h:column>
+	  		 
+	  		 <f:facet name="header">Borrar Pregunta</f:facet>
+					<h:commandButton action="#{examenBean.borrarPregunta}" value="Borrar" class="btn btn-danger btn-md">
+						<i class="fa fa-sign-in"></i>
+						<f:param name="idParamBorrarPregunta" value="#{pregunta.id_pregunta}" />
+					</h:commandButton>
+					
+				<f:facet name="header">Agregar Respuestas</f:facet>    	
+				
+	      		<h:commandButton action="#{examenBean.cargarRespuestasPorIdPregunta}" value="Cargar Respuestas" class="btn btn-primary btn-md">
+	      			<i class="fa fa-sign-in"></i>
+					<f:param name="id_pregunta" value="#{pregunta.id_pregunta}" />
+				</h:commandButton>	
+	  		 </h:column>
+		</h:dataTable>
+	    </h:form>
+		
+		
+		
+</h:body>
+</html>

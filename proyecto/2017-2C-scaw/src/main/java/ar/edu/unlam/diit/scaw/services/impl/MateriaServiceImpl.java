@@ -33,5 +33,11 @@ public class MateriaServiceImpl implements MateriaService {
 		
 	}
 	
+	//Lista de docentes
+	@Override
+	public List<Materia> docentes() {
+		return materiaHsql.docentes();
+	}
+	
 	
 }

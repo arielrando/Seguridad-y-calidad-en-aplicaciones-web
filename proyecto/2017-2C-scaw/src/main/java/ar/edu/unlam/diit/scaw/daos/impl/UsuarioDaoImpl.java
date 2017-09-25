@@ -24,15 +24,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			Statement query = conn.createStatement();
 			
 			String sql = 
-					"SELECT U.email, U.contrasena, U.id, U.apellido, U.nombre, U.idEstadoUsuario, EU.descripcion, R.id AS idRol, R.rolDescripcion FROM Usuarios AS U "
-					+ "INNER JOIN RolesUsuarios AS RU ON U.id=RU.idUsuario "
-					+ "INNER JOIN ROLES AS R ON RU.idRol=R.id "
-					+ "INNER JOIN EstadosUsuarios AS EU ON U.idEstadoUsuario=EU.id "
-					+ "WHERE eMail = '"+ usuario.getEmail() + "' AND contrasena = '"+ usuario.getContrasena() +"' AND idEstadoUsuario IN (1,2)";
+					"SELECT * FROM Usuarios "
+					+ "WHERE eMail = '"+ usuario.getEmail() + "' AND contraseña = '"+ usuario.getContraseña() +"' AND idEstadoUsuario IN (1,2)";
 			ResultSet rs = query.executeQuery(sql);
 			while(rs.next()){
 				String eMail = rs.getString("eMail");
-				String contrasena = rs.getString("contrasena");
+				String contraseña = rs.getString("contraseña");
 				Integer id = rs.getInt("id");
 				String apellido = rs.getString("apellido");
 				String nombre = rs.getString("nombre");
@@ -41,7 +38,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				
 				logueado = new Usuario();
 				logueado.setEmail(eMail);
-				logueado.setContrasena(contrasena);
+				logueado.setContraseña(contraseña);
 				logueado.setId(id);
 				logueado.setApellido(apellido);
 				logueado.setNombre(nombre);
@@ -75,7 +72,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			while (rs.next()) {
 			  
 				String eMail = rs.getString("eMail");
-				String contrasena = rs.getString("contrasena");
+				String contraseña = rs.getString("contraseña");
 				Integer id = rs.getInt("id");
 				String apellido = rs.getString("apellido");
 				String nombre = rs.getString("nombre");
@@ -86,7 +83,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			  
 				Usuario usuario = new Usuario();
 				usuario.setEmail(eMail);
-				usuario.setContrasena(contrasena);
+				usuario.setContraseña(contraseña);
 				usuario.setId(id);
 				usuario.setApellido(apellido);
 				usuario.setNombre(nombre);
@@ -116,13 +113,8 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			
 			query = conn.createStatement();		
 			query.executeUpdate(
-					"INSERT INTO Usuarios (eMail, contrasena, apellido, nombre, idestadousuario) "
-					+ "VALUES('" + usuario.getEmail() + "', '" + usuario.getContrasena() + "', '" + usuario.getApellido()+ "', '" + usuario.getNombre() + ")"
-							
-			);
-			query.executeUpdate(
-					"INSERT INTO RolesUsuarios (idUsuario, idRol) "
-					+ "VALUES('" + usuario.getId() + "', '" + usuario.getIdRol() + ")"
+					"INSERT INTO Usuarios (eMail, contraseña, apellido, nombre, idestadousuario, idrol) "
+					+ "VALUES('" + usuario.getEmail() + "', '" + usuario.getContraseña() + "', '" + usuario.getApellido()+ "', '" + usuario.getNombre() + "', 1," + usuario.getIdRol() + ")"
 							
 			);
 			
@@ -153,7 +145,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			while (rs.next()) {
 			  
 				String eMail = rs.getString("eMail");
-				String contrasena = rs.getString("contrasena");
+				String contraseña = rs.getString("contraseña");
 				Integer id = rs.getInt("id");
 				String apellido = rs.getString("apellido");
 				String nombre = rs.getString("nombre");
@@ -164,7 +156,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			  
 				Usuario usuario = new Usuario();
 				usuario.setEmail(eMail);
-				usuario.setContrasena(contrasena);
+				usuario.setContraseña(contraseña);
 				usuario.setId(id);
 				usuario.setApellido(apellido);
 				usuario.setNombre(nombre);
@@ -227,6 +219,27 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			}		
 		}
 		
+		//Borrar Usuarios
+		@Override
+		public void borrar(Integer id) {
+
+			try {
+				conn = (dataSource.dataSource()).getConnection();
+			
+				Statement query;
+				
+				
+				query = conn.createStatement();		
+				query.executeUpdate(
+						"DELETE FROM Usuarios where id ="+ id +";"
+				);
+				
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}		
+		}
+		
 		//Listado de docentes
 		@Override
 		public List<Usuario> docentes() {
@@ -249,7 +262,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				while (rs.next()) {
 				  
 					String eMail = rs.getString("eMail");
-					String contrasena = rs.getString("contrasena");
+					String contraseña = rs.getString("contraseña");
 					Integer id = rs.getInt("id");
 					String apellido = rs.getString("apellido");
 					String nombre = rs.getString("nombre");
@@ -259,7 +272,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				  
 					Usuario usuario = new Usuario();
 					usuario.setEmail(eMail);
-					usuario.setContrasena(contrasena);
+					usuario.setContraseña(contraseña);
 					usuario.setId(id);
 					usuario.setApellido(apellido);
 					usuario.setNombre(nombre);

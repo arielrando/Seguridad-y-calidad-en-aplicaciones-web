@@ -11,6 +11,7 @@ public interface UsuarioService {
 	public List<Usuario> pendientes();
 	public void aceptar(Integer id);
 	public void rechazar(Integer id);
+	public void borrar(Integer id);
 	public List<Usuario> docentes();
 
 }

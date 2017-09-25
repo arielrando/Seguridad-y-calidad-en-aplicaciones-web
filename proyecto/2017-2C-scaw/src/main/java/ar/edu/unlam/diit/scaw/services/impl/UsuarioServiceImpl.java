@@ -57,6 +57,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 		
 	}
 	
+	//borrar un usuario
+	@Override
+	public void borrar(Integer id) {
+		usuarioHsql.borrar(id);
+		
+	}
+	
 	//Lista de docentes
 		@Override
 		public List<Usuario> docentes() {

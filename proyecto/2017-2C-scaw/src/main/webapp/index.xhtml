@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -43,8 +44,8 @@
 								</h:inputText>
 								<br />
 				
-								<h:inputSecret value="#{usuarioBean.contrasena}" id="contrasena" class="form-control input-lg" required="true">
-									<f:passThroughAttribute name="placeholder" value="contrasena"/>
+								<h:inputSecret value="#{usuarioBean.contraseña}" id="contraseña" class="form-control input-lg" required="true">
+									<f:passThroughAttribute name="placeholder" value="Contraseña"/>
 								</h:inputSecret>
 								<br />
 								<br />
@@ -58,7 +59,7 @@
 				    <div class="col-md-6 right">
 						
 						<h:form class="form-login">
-							<div class="form-header"><h1>Registro</h1></div>
+							<div class="form-header"><h1>Registración</h1></div>
 							  <h:panelGrid>
 								
 								<h:inputText value="#{usuarioBean.nombre}" id="nombre" class="form-control input-lg" data-placeholder="Nombre de Usuario" required="true">
@@ -76,8 +77,8 @@
 								</h:inputText>
 								<br />
 								
-								<h:inputSecret value="#{usuarioBean.contrasena}" id="contrasena" class="form-control input-lg" required="true">
-									<f:passThroughAttribute name="placeholder" value="contrasena"/>
+								<h:inputSecret value="#{usuarioBean.contraseña}" id="contraseña" class="form-control input-lg" required="true">
+									<f:passThroughAttribute name="placeholder" value="Contraseña"/>
 								</h:inputSecret>
 								<br />
 								

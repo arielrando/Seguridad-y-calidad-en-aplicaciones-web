@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
@@ -14,13 +15,12 @@
 		<nav class="navbar navbar-inverse">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
-		      <a class="navbar-brand" href="#">UNLAM - Sistema de Evaluación</a>
+		      <a class="navbar-brand" href="index.xhtlm">UNLAM - Sistema de Evaluación</a>
 		    </div>
 		    <ul class="nav navbar-nav">
 		      <li><a href="welcome.xhtml">Inicio</a></li>
 		      <li><a href="pendientes.xhtml">Usuarios Pendientes</a></li>
 		      <li><a href="materias.xhtml">Materias</a></li>
-		      <li><a href="#">Page 3</a></li>
 		    </ul>
 		  </div>
 		</nav>
@@ -70,6 +70,14 @@
 		    <h:column>
 				<f:facet name="header">Rol del Usuario</f:facet>
 	    	  	#{person.idRol} - #{person.rolDescripcion}
+		    </h:column>
+		    
+		    <h:column>
+				<f:facet name="header">Borrar Usuario</f:facet>
+				<h:commandButton action="#{usuarioBean.borrar}" value="Borrar" class="btn btn-danger btn-md">
+					<i class="fa fa-sign-in"></i>
+					<f:param name="idParamBorrar" value="#{person.id}" />
+				</h:commandButton>
 		    </h:column>
 		</h:dataTable>
 	</h:form>

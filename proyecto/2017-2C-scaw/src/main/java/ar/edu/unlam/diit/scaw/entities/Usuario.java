@@ -16,7 +16,7 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private Integer id;
 	private String email;
-	private String contrasena;
+	private String contraseña;
 	private String apellido;
 	private String nombre;
 	private Integer idEstadoUsuario;
@@ -59,12 +59,12 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 
-	public String getContrasena() {
-		return contrasena;
+	public String getContraseña() {
+		return contraseña;
 	}
 
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
 	}
 	
 	public Integer getIdEstadoUsuario() {

@@ -15,10 +15,10 @@
 		<nav class="navbar navbar-inverse">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
-		      <a class="navbar-brand" href="#">UNLAM - Sistema de Evaluación</a>
+		      <a class="navbar-brand" href="index.xhtlm">UNLAM - Sistema de Evaluación</a>
 		    </div>
 		    <ul class="nav navbar-nav">
-		      <li class="active"><a href="index.xhtml">Home</a></li>
+		      <li><a href="examenesAlumno.xhtml">Lista de Exámenes</a></li>
 		    </ul>
 		  </div>
 		</nav>
@@ -28,13 +28,15 @@
 	</h:head>
 
 <h:body>
-	<h1>No puede acceder: </h1>
 	
-	<ul>
-		<li>El Usuario y/o Contraseña es incorrecto</li>
-		<li>No es un Usuario Habilitado</li>
-	</ul>
-	<a type="button" class="btn-default" href="index.xhtml">Volver</a>
-	
+		#{examenBean.data}
+		
+		<h:dataTable value="#{examenBean.habilitadosPorId}" var="habilitadosPorId">
+			<h:column>
+				<f:facet name="header">Preguntas</f:facet>    				
+     				#{habilitadosPorId.idExamen}
+     				#{habilitadosPorId.pregunta}
+			</h:column>
+		</h:dataTable>
 </h:body>
 </html>

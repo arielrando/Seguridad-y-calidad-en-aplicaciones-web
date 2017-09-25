@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -17,13 +18,11 @@
 		<nav class="navbar navbar-inverse">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
-		      <a class="navbar-brand" href="#">UNLAM - Sistema de Evaluación</a>
+		      <a class="navbar-brand" href="index.xhtlm">UNLAM - Sistema de Evaluación</a>
 		    </div>
 		    <ul class="nav navbar-nav">
-		      <li><a href="welcome.xhtml">Inicio</a></li>
-		      <li><a href="pendientes.xhtml">Usuarios Pendientes</a></li>
-		      <li><a href="materias.xhtml">Materias</a></li>
-		      <li><a href="#">Page 3</a></li>
+		      <li><a href="examenes.xhtml">Lista de Exámenes</a></li>
+		      <li><a href="examenesPendientes.xhtml">Exámenes Pendientes de Aprobación</a></li>
 		    </ul>
 		  </div>
 		</nav>
@@ -36,28 +35,31 @@
 	
 			<h:form class="form-login">
 				
-					<div class="form-header"><h1>Agregar Examen</h1></div>
-					  <h:panelGrid>
-						<h:inputText value="#{examenBean.nombre}" id="nombre" class="form-control input-lg" required="true">
-							<f:passThroughAttribute name="placeholder" value="Nombre del examen"/>
-						</h:inputText>
-						<br />
+					<div class= "table table-success" ><h1>Agregar Exámenes</h1></div>
+					  	 <h:column>
+							
+							<h:inputText value="#{examenBean.nombre}" id="nombre" class="form-control input-lg" required="true">
+								<f:passThroughAttribute name="placeholder" value="Nombre del Examen"/>
+							</h:inputText>
+						 </h:column>
 						
-						<h:inputText value="#{examenBean.idMateria}" id="idMateria" class="form-control input-lg" required="true">
-							<f:passThroughAttribute name="placeholder" value="Materia"/>
-						</h:inputText>
-						<br />
-						
-						<h:inputText value="#{examenBean.idEstadoExamen}" id="idEstadoExamen" class="form-control input-lg" required="true">
-							<f:passThroughAttribute name="placeholder" value="Estado del examen"/>
-						</h:inputText>
+						 <h:column>
+					        <h:selectOneMenu value="#{examenBean.idMateria}" class="form-control input-lg" >
+								<f:selectItem value="#{null}" itemLabel="- Elegir Materia -" />
+					            <f:selectItems value="#{materiaBean.materias}" var="materias" itemLabel="#{materias.id} - #{materias.nombreMateria}" itemValue="#{materias.id}" />
+				       		 </h:selectOneMenu>
+						 </h:column>
 				        
-						<h:commandButton action="#{examenBean.save}" value="Ingresar" class="btn btn-primary btn-md">
-							<i class="fa fa-sign-in"></i>
-						</h:commandButton>
-					
-						<h:button value="Volver" outcome="examenes" class="btn btn-danger btn-md"/>
-					</h:panelGrid>
+				        <h:column>
+							<h:button value="Volver" outcome="examenes" class="btn btn-danger btn-md"/>
+						</h:column>
+				        
+				        <h:column>
+							<h:commandButton action="#{examenBean.save}" value="Siguiente" class="btn btn-primary btn-md">
+									<i class="fa fa-sign-in"></i>
+							</h:commandButton>
+						</h:column>
+						
 	      	</h:form>
 		
 	</h:body>
