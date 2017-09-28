@@ -30,9 +30,9 @@ public class ExamenDaoImpl implements ExamenDao {
 			query = conn.createStatement();
 			
 			ResultSet rs = query.executeQuery(
-					"SELECT * FROM Examenes "
-					+"LEFT JOIN Materias ON Examenes.idMateria = Materias.id "
-					+"LEFT JOIN EstadosExamenes ON EstadosExamenes.id = Examenes.idEstadoExamen"
+					"SELECT E.id, M.id AS idMateria, E.id AS idEstadoExamen, E.nombre, M.nombre AS nombreMateria, EE.descripcion FROM Examenes AS E "
+					+ "INNER JOIN Materias AS M ON M.id = E.idMateria "
+					+ "INNER JOIN EstadosExamenes AS EE ON EE.id = E.idEstadoExamen"
 					);
 	
 			while (rs.next()) {

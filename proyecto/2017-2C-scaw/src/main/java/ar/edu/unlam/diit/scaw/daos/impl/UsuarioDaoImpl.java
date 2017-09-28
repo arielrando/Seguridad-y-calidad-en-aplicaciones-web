@@ -25,11 +25,11 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			
 			String sql = 
 					"SELECT * FROM Usuarios "
-					+ "WHERE eMail = '"+ usuario.getEmail() + "' AND contraseña = '"+ usuario.getContraseña() +"' AND idEstadoUsuario IN (1,2)";
+					+ "WHERE eMail = '"+ usuario.getEmail() + "' AND contrasena = '"+ usuario.getContrasena() +"' AND idEstadoUsuario IN (1,2)";
 			ResultSet rs = query.executeQuery(sql);
 			while(rs.next()){
 				String eMail = rs.getString("eMail");
-				String contraseña = rs.getString("contraseña");
+				String contrasena = rs.getString("contrasena");
 				Integer id = rs.getInt("id");
 				String apellido = rs.getString("apellido");
 				String nombre = rs.getString("nombre");
@@ -38,7 +38,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				
 				logueado = new Usuario();
 				logueado.setEmail(eMail);
-				logueado.setContraseña(contraseña);
+				logueado.setContrasena(contrasena);
 				logueado.setId(id);
 				logueado.setApellido(apellido);
 				logueado.setNombre(nombre);
@@ -72,7 +72,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			while (rs.next()) {
 			  
 				String eMail = rs.getString("eMail");
-				String contraseña = rs.getString("contraseña");
+				String contrasena = rs.getString("contrasena");
 				Integer id = rs.getInt("id");
 				String apellido = rs.getString("apellido");
 				String nombre = rs.getString("nombre");
@@ -83,7 +83,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			  
 				Usuario usuario = new Usuario();
 				usuario.setEmail(eMail);
-				usuario.setContraseña(contraseña);
+				usuario.setContrasena(contrasena);
 				usuario.setId(id);
 				usuario.setApellido(apellido);
 				usuario.setNombre(nombre);
@@ -113,8 +113,8 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			
 			query = conn.createStatement();		
 			query.executeUpdate(
-					"INSERT INTO Usuarios (eMail, contraseña, apellido, nombre, idestadousuario, idrol) "
-					+ "VALUES('" + usuario.getEmail() + "', '" + usuario.getContraseña() + "', '" + usuario.getApellido()+ "', '" + usuario.getNombre() + "', 1," + usuario.getIdRol() + ")"
+					"INSERT INTO Usuarios (eMail, contrasena, apellido, nombre, idestadousuario, idrol) "
+					+ "VALUES('" + usuario.getEmail() + "', '" + usuario.getContrasena() + "', '" + usuario.getApellido()+ "', '" + usuario.getNombre() + "', 1," + usuario.getIdRol() + ")"
 							
 			);
 			
@@ -145,7 +145,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			while (rs.next()) {
 			  
 				String eMail = rs.getString("eMail");
-				String contraseña = rs.getString("contraseña");
+				String contrasena = rs.getString("contrasena");
 				Integer id = rs.getInt("id");
 				String apellido = rs.getString("apellido");
 				String nombre = rs.getString("nombre");
@@ -156,7 +156,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			  
 				Usuario usuario = new Usuario();
 				usuario.setEmail(eMail);
-				usuario.setContraseña(contraseña);
+				usuario.setContrasena(contrasena);
 				usuario.setId(id);
 				usuario.setApellido(apellido);
 				usuario.setNombre(nombre);
@@ -262,7 +262,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				while (rs.next()) {
 				  
 					String eMail = rs.getString("eMail");
-					String contraseña = rs.getString("contraseña");
+					String contrasena = rs.getString("contrasena");
 					Integer id = rs.getInt("id");
 					String apellido = rs.getString("apellido");
 					String nombre = rs.getString("nombre");
@@ -272,7 +272,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				  
 					Usuario usuario = new Usuario();
 					usuario.setEmail(eMail);
-					usuario.setContraseña(contraseña);
+					usuario.setContrasena(contrasena);
 					usuario.setId(id);
 					usuario.setApellido(apellido);
 					usuario.setNombre(nombre);
