@@ -14,7 +14,7 @@ import ar.edu.unlam.diit.scaw.services.impl.ExamenServiceImpl;
 
 @ManagedBean(name = "examenBean", eager = true)
 @RequestScoped
-public class ExamenBean<ModelAndView> implements Serializable {
+public class ExamenBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

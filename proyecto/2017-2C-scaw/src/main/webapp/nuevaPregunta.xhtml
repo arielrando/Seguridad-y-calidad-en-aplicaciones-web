@@ -29,7 +29,7 @@
 	<h:form class="form-login">
 
 		<div class="form-header">
-			<h1>Preguntas</h1>
+			<h1>Nueva pregunta</h1>
 		</div>
 		<h:panelGrid>
 
@@ -53,43 +53,10 @@
 			<h:commandButton action="#{preguntasBean.savePreguntas}"
 				value="Ingresar" class="btn btn-primary btn-md">
 				<i class="fa fa-sign-in"></i>
-				<f:param name="id" value="#{examenBean.id}" />
+				<f:param name="id" value="#{examen.id}" />
 			</h:commandButton>
 		</h:panelGrid>
 	</h:form>
-	<h:form class="form-login">
-		<h:dataTable value="#{preguntasBean.preguntasPorId}" var="pregunta"
-			class="table table-success">
-			<h:column>
-				<f:facet name="header">Preguntas</f:facet>    				
-	      		#{pregunta.id_pregunta} - #{pregunta.pregunta}
-	  		 </h:column>
-
-			<h:column>
-
-				<f:facet name="header">Borrar Pregunta</f:facet>
-				<h:commandButton action="#{preguntasBean.borrarPregunta}"
-					value="Borrar" class="btn btn-danger btn-md">
-					<i class="fa fa-sign-in"></i>
-					<f:param name="idParamBorrarPregunta"
-						value="#{pregunta.id_pregunta}" />
-					<f:param name="id" value="#{pregunta.idExamen}" />
-				</h:commandButton>
-			</h:column>
-			<h:column>
-				<f:facet name="header">Agregar Respuestas</f:facet>
-				<h:commandButton
-					action="#{respuestasBean.cargarRespuestasPorIdPregunta}"
-					value="Cargar Respuestas" class="btn btn-primary btn-md">
-					<i class="fa fa-sign-in"></i>
-					<f:param name="id_pregunta" value="#{pregunta.id_pregunta}" />
-					<f:param name="id" value="#{pregunta.idExamen}" />
-				</h:commandButton>
-			</h:column>
-		</h:dataTable>
-	</h:form>
-
-
-
-</h:body>
+	
+	</h:body>
 </html>

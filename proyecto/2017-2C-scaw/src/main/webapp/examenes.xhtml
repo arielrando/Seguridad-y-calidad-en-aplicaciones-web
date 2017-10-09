@@ -64,7 +64,7 @@
 		    	
 		    	<h:column>
 					<f:facet name="header">Agregar Preguntas</f:facet>
-					<h:commandButton action="#{examenBean.cargarPreguntasPorIdExamen}" value="Cargar Preguntas" class="btn btn-primary btn-md">
+					<h:commandButton action="#{preguntasBean.cargarPreguntasPorIdExamen}" value="Cargar Preguntas" class="btn btn-primary btn-md">
 						<i class="fa fa-sign-in"></i>
 						<f:param name="id" value="#{examen.id}" />
 					</h:commandButton>
